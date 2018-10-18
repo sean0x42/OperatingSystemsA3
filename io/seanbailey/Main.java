@@ -2,8 +2,11 @@ package io.seanbailey;
 
 import java.io.File;
 
+import io.seanbailey.Process;
 import io.seanbailey.Simulator;
+import io.seanbailey.exception.ParseException;
 import io.seanbailey.exception.ValidationException;
+import io.seanbailey.parser.Parser;
 import io.seanbailey.util.Logger;
 
 /**
@@ -36,7 +39,7 @@ public class Main {
     // Init
     int frames;
     int timeQuantum;
-    File[] files = new File[args.length - 2];
+    Process[] processes = new Process[args.length - 2];
 
     // Validate input
     try {
@@ -44,15 +47,19 @@ public class Main {
       timeQuantum = validateInt(args[1]);
 
       for (int i = 2; i < args.length; i++) {
-        files[i - 2] = validateFile(args[i]);
+        File file = validateFile(args[i]);
+        processes[i - 2] = Parser.parse(file);
       }
-    } catch (ValidationException exception) {
+    } catch (ValidationException | ParseException exception) {
       logger.error(exception.getMessage());
       return;
     }
 
     // Start simulation
-    new Simulator(frames, timeQuantum);
+    new Simulator(frames, timeQuantum, processes);
+    for (Process p : processes) {
+      logger.debug(p.toString());
+    }
   }
 
   /**

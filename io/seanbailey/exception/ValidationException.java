@@ -6,10 +6,10 @@ package io.seanbailey.exception;
  * @author Sean Bailey c3279343
  */
 public class ValidationException extends Throwable {
-
+  
   /**
    * Constructs a new validation exception.
-   * @param message Error message.
+   * @param message Exception message.
    */
   public ValidationException(String message) {
     super(message);
@@ -17,10 +17,10 @@ public class ValidationException extends Throwable {
 
   /**
    * Constructs a new validation exception.
-   * @param format String format.
-   * @param values Objects to populate format string with.
+   * @param format Message format.
+   * @param values Values to populate format with.
    */
   public ValidationException(String format, Object... values) {
-    super(String.format(format, values));
+    this(String.format(format, values));
   }
 }
