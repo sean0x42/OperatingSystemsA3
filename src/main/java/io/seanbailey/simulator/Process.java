@@ -11,18 +11,18 @@ public class Process {
 
   private static int idSequence = 0;
 
-  private List<Integer> pages;
-  private int id;
+  private List<Integer> pages = new ArrayList<>();
+  private final int id;
+  private final String name;
 
   /**
    * Constructs a new process.
+   * @param name Human readable process name.
    */
-  public Process() {
-    pages = new ArrayList<>();
-
-    // Increment id
+  public Process(String name) {
+    this.name = name;
     idSequence++;
-    id = idSequence;
+    this.id = idSequence;
   }
 
   /**
@@ -40,11 +40,16 @@ public class Process {
   public String toString() {
     return "Process{" +
       "id: " + id +
+      ", name: " + name +
       ", pages: " + pages.toString() +
       "}";
   }
 
   public int getId() {
     return id;
+  }
+
+  public String getName() {
+    return name;
   }
 }

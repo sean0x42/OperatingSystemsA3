@@ -18,16 +18,16 @@ public class Parser {
   /**
    * Parses a process file.
    * @param file Process file to parse.
+   * @param name Short, human readable name for the process.
    * @return A process.
    * @throws ParseException if the file cannot be parsed for any reason.
    * @throws ValidationException of the file is not valid.
    */
-  public static Process parse(File file) throws ParseException, 
+  public static Process parse(File file, String name) throws ParseException, 
          ValidationException {
-
     // Init
     Scanner scanner;
-    Process process = new Process();
+    Process process = new Process(name);
 
     // Attempt to construct scanner
     try {

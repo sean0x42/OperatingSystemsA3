@@ -43,18 +43,26 @@ public class Main {
 
       for (int i = 2; i < args.length; i++) {
         File file = validateFile(args[i]);
-        processes[i - 2] = Parser.parse(file);
+        processes[i - 2] = Parser.parse(file, args[i]);
       }
     } catch (ValidationException | ParseException exception) {
       logger.error(exception.getMessage());
       return;
     }
 
-    // Start simulation
-    new Simulator(frames, timeQuantum, processes);
-    for (Process p : processes) {
-      logger.debug(p.toString());
+    // Print if debug is enabled in this build
+    if (Logger.ENABLE_DEBUG) {
+      logger.debug("Creating simulation with the following values:");
+      logger.debug("  Frames: %d", frames);
+      logger.debug("  Time Quantum: %d", timeQuantum);
+      logger.debug("  Processes:");
+      for (Process process : processes) {
+        logger.debug("  » %s", process);
+      }
     }
+
+    // Start simulation
+    new Simulator(frames, timeQuantum, processes).start();
   }
 
   /**

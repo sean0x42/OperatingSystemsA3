@@ -10,10 +10,13 @@ import io.seanbailey.simulator.Process;
 public class Simulator {
 
   private static final Logger logger = new Logger();
+  private static final int MAX_PAGES_PER_PROCESS = 50;
 
   private final int frames;
   private final int timeQuantum;
   private final Process[] processes;
+
+  private int currentPage = -1;
 
   /**
    * Constructs a new simulator.
@@ -26,9 +29,19 @@ public class Simulator {
     this.frames = frames;
     this.timeQuantum = timeQuantum;
     this.processes = processes;
-    logger.debug("Creating simulation with the following values:");
-    logger.debug("frames: %d", frames);
-    logger.debug("timeQuantum: %d", timeQuantum);
-    logger.debug("processes: %d", processes.length);
+  }
+
+  /**
+   * Starts the simulation.
+   *
+   * <p>
+   * Note that the simulation takes place over a number of steps.
+   * <ol>
+   *   <li>Select a process for execution.</li>
+   * </ol>
+   * </p>
+   */
+  public void start() {
+        
   }
 }
