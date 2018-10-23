@@ -1,13 +1,12 @@
-package io.seanbailey;
+package io.seanbailey.simulator;
 
+import io.seanbailey.simulator.Process;
+import io.seanbailey.simulator.Simulator;
+import io.seanbailey.simulator.exception.ParseException;
+import io.seanbailey.simulator.exception.ValidationException;
+import io.seanbailey.simulator.parser.Parser;
+import io.seanbailey.simulator.util.Logger;
 import java.io.File;
-
-import io.seanbailey.Process;
-import io.seanbailey.Simulator;
-import io.seanbailey.exception.ParseException;
-import io.seanbailey.exception.ValidationException;
-import io.seanbailey.parser.Parser;
-import io.seanbailey.util.Logger;
 
 /**
  * Main entry point to the application. For an entry point that conforms to the
@@ -17,11 +16,7 @@ import io.seanbailey.util.Logger;
  */
 public class Main {
 
-  private static final Logger logger;
-
-  static {
-    logger = new Logger(System.out, System.err);
-  }
+  private static final Logger logger = new Logger();
 
   /**
    * Main entry point.
@@ -70,6 +65,7 @@ public class Main {
    * @throws ValidationException if the value is not valid.
    */
   private static int validateInt(String value) throws ValidationException {
+    // Init
     int i;
 
     // Attempt to parse int

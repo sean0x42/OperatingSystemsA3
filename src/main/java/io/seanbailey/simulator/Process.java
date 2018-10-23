@@ -1,4 +1,4 @@
-package io.seanbailey;
+package io.seanbailey.simulator;
 
 import java.util.ArrayList;
 import java.util.List;

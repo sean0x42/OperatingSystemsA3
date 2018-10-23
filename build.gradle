@@ -12,8 +12,8 @@ plugins {
   id 'application'
 }
 
-group = 'io.seanbailey'
-mainClassName = 'Main'
+group = 'io.seanbailey.simulator'
+mainClassName = 'io.seanbailey.simulator.Main'
 
 dependencies {
   compile 'com.google.guava:guava:23.0'
@@ -22,4 +22,8 @@ dependencies {
 
 repositories {
   jcenter()
+}
+
+javadoc {
+  options.addBooleanOption('html5', true)
 }

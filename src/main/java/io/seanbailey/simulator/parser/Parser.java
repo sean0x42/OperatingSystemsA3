@@ -1,18 +1,17 @@
-package io.seanbailey.parser;
+package io.seanbailey.simulator.parser;
 
+import io.seanbailey.simulator.Process;
+import io.seanbailey.simulator.exception.ParseException;
+import io.seanbailey.simulator.exception.ValidationException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import io.seanbailey.Process;
-import io.seanbailey.exception.ParseException;
-import io.seanbailey.exception.ValidationException;
-
 /**
  * Parses a process file, returning a process or a parse exception.
  * @author Sean Bailey c3279343
- * @see io.seanbailey.Process
- * @see io.seanbailey.exception.ParseException
+ * @see io.seanbailey.simulator.Process
+ * @see io.seanbailey.simulator.exception.ParseException
  */
 public class Parser {
 
