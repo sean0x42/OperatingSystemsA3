@@ -4,7 +4,6 @@ import io.seanbailey.simulator.event.Event;
 import io.seanbailey.simulator.util.Logger;
 import io.seanbailey.simulator.process.Process;
 import java.util.PriorityQueue;
-import java.util.Queue;
 
 /**
  * Manages and runs the simulation according to the assignment specification.
@@ -19,7 +18,7 @@ public class Simulator {
   private final int timeQuantum;
   private final Process[] processes;
 
-  private Queue<Event> readyQueue = new PriorityQueue<>();
+  private PriorityQueue<Event> eventQueue = new PriorityQueue<>();
   private int currentTime;
 
   /**
@@ -37,8 +36,34 @@ public class Simulator {
 
   /**
    * Starts the simulation.
+   *
+   * <p>
+   * The simulation takes place over the following stages:
+   * <ol>
+   *   <li>Allocate each process with a portion of frames from main memory.</li>
+   *   <li>Kick of the simulation by creating initial events.</li>
+   * </ol>
+   * </p>
    */
   public void simulateAndPrint() {
+    // Create initial events to kick off the simulation
+    
+
     currentTime = 0;
+
+    // Continue until the event queue is empty
+    while (!eventQueue.isEmpty()) {
+      Event event = eventQueue.poll();
+      currentTime = event.getTime();
+      event.run();
+    }
+  }
+
+  /**
+   * Registers a new event.
+   * @param event Event to register.
+   */
+  public void registerEvent(Event event) {
+    eventQueue.add(event);
   }
 }
