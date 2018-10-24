@@ -1,4 +1,4 @@
-package io.seanbailey.simulator.exception;
+package io.seanbailey.simulator;
 
 /**
  * An exception that can be thrown whenever validation of a certain resource

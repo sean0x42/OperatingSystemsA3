@@ -1,9 +1,9 @@
 package io.seanbailey.simulator;
 
-import io.seanbailey.simulator.Process;
+import io.seanbailey.simulator.process.Process;
 import io.seanbailey.simulator.Simulator;
-import io.seanbailey.simulator.exception.ParseException;
-import io.seanbailey.simulator.exception.ValidationException;
+import io.seanbailey.simulator.ValidationException;
+import io.seanbailey.simulator.parser.ParseException;
 import io.seanbailey.simulator.parser.Parser;
 import io.seanbailey.simulator.util.Logger;
 import java.io.File;
@@ -62,7 +62,9 @@ public class Main {
     }
 
     // Start simulation
-    new Simulator(frames, timeQuantum, processes).start();
+    Simulator sim = new Simulator(frames, timeQuantum, processes);
+    sim.simulateAndPrint();
+    sim.simulateAndPrint();
   }
 
   /**

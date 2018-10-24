@@ -1,8 +1,7 @@
 package io.seanbailey.simulator.parser;
 
-import io.seanbailey.simulator.Process;
-import io.seanbailey.simulator.exception.ParseException;
-import io.seanbailey.simulator.exception.ValidationException;
+import io.seanbailey.simulator.process.Process;
+import io.seanbailey.simulator.ValidationException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;

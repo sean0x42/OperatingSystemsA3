@@ -1,7 +1,10 @@
 package io.seanbailey.simulator;
 
+import io.seanbailey.simulator.event.Event;
 import io.seanbailey.simulator.util.Logger;
-import io.seanbailey.simulator.Process;
+import io.seanbailey.simulator.process.Process;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  * Manages and runs the simulation according to the assignment specification.
@@ -16,7 +19,8 @@ public class Simulator {
   private final int timeQuantum;
   private final Process[] processes;
 
-  private int currentPage = -1;
+  private Queue<Event> readyQueue = new PriorityQueue<>();
+  private int currentTime;
 
   /**
    * Constructs a new simulator.
@@ -33,15 +37,8 @@ public class Simulator {
 
   /**
    * Starts the simulation.
-   *
-   * <p>
-   * Note that the simulation takes place over a number of steps.
-   * <ol>
-   *   <li>Select a process for execution.</li>
-   * </ol>
-   * </p>
    */
-  public void start() {
-        
+  public void simulateAndPrint() {
+    currentTime = 0;
   }
 }

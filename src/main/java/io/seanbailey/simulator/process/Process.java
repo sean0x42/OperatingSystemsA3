@@ -1,5 +1,6 @@
-package io.seanbailey.simulator;
+package io.seanbailey.simulator.process;
 
+import io.seanbailey.simulator.process.State;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,11 +10,15 @@ import java.util.List;
  */
 public class Process {
 
+  // Use to keep track of the current process id,
   private static int idSequence = 0;
 
+  // Final variables
   private List<Integer> pages = new ArrayList<>();
   private final int id;
   private final String name;
+
+  private State state = State.READY;
 
   /**
    * Constructs a new process.
@@ -41,6 +46,7 @@ public class Process {
     return "Process{" +
       "id: " + id +
       ", name: " + name +
+      ", state: " + state.toString() +
       ", pages: " + pages.toString() +
       "}";
   }
@@ -51,5 +57,13 @@ public class Process {
 
   public String getName() {
     return name;
+  }
+
+  public State getState() {
+    return state;
+  }
+
+  public void setState(State state) {
+    this.state = state;
   }
 }

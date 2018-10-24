@@ -1,4 +1,4 @@
-package io.seanbailey.simulator.exception;
+package io.seanbailey.simulator.parser;
 
 /**
  * An exception that can be thrown when a file cannot be parsed.
