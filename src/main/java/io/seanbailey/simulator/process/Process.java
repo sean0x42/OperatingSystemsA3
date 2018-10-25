@@ -1,8 +1,7 @@
 package io.seanbailey.simulator.process;
 
 import io.seanbailey.simulator.process.State;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 
 /**
  * Represents a single process, to be handled by scheduling algorithms.
@@ -14,11 +13,12 @@ public class Process {
   private static int idSequence = 0;
 
   // Final variables
-  private List<Integer> pages = new ArrayList<>();
+  private LinkedList<Integer> pages = new LinkedList<>();
   private final int id;
   private final String name;
 
   private State state = State.READY;
+  private int faults;
 
   /**
    * Constructs a new process.
@@ -31,11 +31,29 @@ public class Process {
   }
 
   /**
+   * Constructs a new process.
+   * @param process Process to clone.
+   */
+  public Process(Process process) {
+    name = process.getName();
+    id = process.getId();
+    pages = process.getPages();
+  }
+
+  /**
    * Adds a page to the list of pages.
    * @param page Page to add.
    */
   public void addPage(int page) {
-    pages.add(page);
+    pages.offer(page);
+  }
+
+  /**
+   * Retrieves the next page and removes it from the queue.
+   * @return the next paghe in the queue.
+   */
+  public int getNextPage() {
+    return pages.poll();
   }
 
   /**
@@ -65,5 +83,9 @@ public class Process {
 
   public void setState(State state) {
     this.state = state;
+  }
+
+  public LinkedList<Integer> getPages() {
+    return pages;
   }
 }

@@ -49,4 +49,8 @@ public abstract class Event implements Comparable<Event> {
   public int getTime() {
     return time;
   }
+
+  protected Simulator getSimulator() {
+    return simulator;
+  }
 }

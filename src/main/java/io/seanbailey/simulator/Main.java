@@ -6,6 +6,7 @@ import io.seanbailey.simulator.ValidationException;
 import io.seanbailey.simulator.parser.ParseException;
 import io.seanbailey.simulator.parser.Parser;
 import io.seanbailey.simulator.util.Logger;
+import io.seanbailey.simulator.util.ProcessUtils;
 import java.io.File;
 
 /**
@@ -62,9 +63,9 @@ public class Main {
     }
 
     // Start simulation
-    Simulator sim = new Simulator(frames, timeQuantum, processes);
-    sim.simulateAndPrint();
-    sim.simulateAndPrint();
+    Simulator sim = new Simulator(frames, timeQuantum);
+    sim.simulate(ProcessUtils.clone(processes));
+//    sim.simulate(ProcessUtils.clone(processes));
   }
 
   /**
