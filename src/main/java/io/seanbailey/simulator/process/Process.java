@@ -1,7 +1,10 @@
 package io.seanbailey.simulator.process;
 
 import io.seanbailey.simulator.process.State;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.StringJoiner;
 
 /**
  * Represents a single process, to be handled by scheduling algorithms.
@@ -18,7 +21,9 @@ public class Process {
   private final String name;
 
   private State state = State.READY;
-  private int faults;
+  private int faults = 0;
+  private List<Integer> faultTimes = new ArrayList<>();
+  private int turnaroundTime = -1;
 
   /**
    * Constructs a new process.
@@ -37,7 +42,7 @@ public class Process {
   public Process(Process process) {
     name = process.getName();
     id = process.getId();
-    pages = process.getPages();
+    pages = new LinkedList<>(process.getPages());
   }
 
   /**
@@ -49,11 +54,34 @@ public class Process {
   }
 
   /**
-   * Retrieves the next page and removes it from the queue.
-   * @return the next paghe in the queue.
+   * @return Whether this process has any more pages left.
+   */
+  public boolean hasNextPage() {
+    return !pages.isEmpty();
+  }
+
+  /**
+   * Retrieves the next page from the queue.
+   * @return the next page in the queue.
    */
   public int getNextPage() {
-    return pages.poll();
+    return pages.peek();
+  }
+
+  /**
+   * Removes the head of the page queue.
+   */
+  public void removePage() {
+    pages.remove();
+  }
+
+  /**
+   * Adds a page fault.
+   * @param time Time that the page fault occured.
+   */
+  public void addFault(int time) {
+    faults++;
+    faultTimes.add(time);
   }
 
   /**
@@ -66,6 +94,9 @@ public class Process {
       ", name: " + name +
       ", state: " + state.toString() +
       ", pages: " + pages.toString() +
+      ", faults: " + faults +
+      ", faultTimes: " + faultTimes.toString() +
+      ", turnaroundTime: " + turnaroundTime +
       "}";
   }
 
@@ -87,5 +118,31 @@ public class Process {
 
   public LinkedList<Integer> getPages() {
     return pages;
+  }
+
+  public int getTurnaroundTime() {
+    return turnaroundTime;
+  }
+
+  public void setTurnaroundTime(int time) {
+    turnaroundTime = time;
+  }
+
+  public int getFaults() {
+    return faults;
+  }
+
+  public List<Integer> getFaultTimes() {
+    return faultTimes;
+  }
+
+  public String getFaultTimesString() {
+    StringJoiner joiner = new StringJoiner(", ", "{", "}");
+
+    for (int time : faultTimes) {
+      joiner.add(String.valueOf(time));
+    }
+
+    return joiner.toString();
   }
 }

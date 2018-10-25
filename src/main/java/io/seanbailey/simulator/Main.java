@@ -1,5 +1,7 @@
 package io.seanbailey.simulator;
 
+import io.seanbailey.simulator.policy.LRUPolicy;
+import io.seanbailey.simulator.policy.ClockPolicy;
 import io.seanbailey.simulator.process.Process;
 import io.seanbailey.simulator.Simulator;
 import io.seanbailey.simulator.ValidationException;
@@ -64,8 +66,10 @@ public class Main {
 
     // Start simulation
     Simulator sim = new Simulator(frames, timeQuantum);
-    sim.simulate(ProcessUtils.clone(processes));
-//    sim.simulate(ProcessUtils.clone(processes));
+    sim.simulate(ProcessUtils.clone(processes), new LRUPolicy());
+    logger.info("------------------------------------------------------------");
+    logger.info("");
+    sim.simulate(ProcessUtils.clone(processes), new ClockPolicy());
   }
 
   /**
