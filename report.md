@@ -8,4 +8,8 @@ This setup allowed me to peek into the state of the application as it ran. Keepi
 
 ## Unit tests with JUnit
 
-The approach described in the previous section was beneficial in allowing me to peek at the state as the application ran. However, I also wanted to know that any refactoring that occurred would not break the entire codebase. So I added some tests powered by JUnit 4. Since I was using Gradle already to build and manage the assignment, adding tests was as simple as adding JUnit to the list of dependencies.
+The approach described in the previous section was beneficial in allowing me to peek at the state as the application ran. However, I also wanted to know that any refactoring that occurred would not break the entire codebase. So I added some tests with by JUnit. Since I was using Gradle already to build and manage the assignment, adding tests was as simple as adding JUnit to the list of dependencies.
+
+## Replacement Policy Observations
+
+Both LRU and clock policy are relatively straightforwad policies to implement, and as a result they end up getting similar results. LRU appears to be just a little better in the simulations used in this assigment. This makes sense when you consider the principle of locality. 
